@@ -1,0 +1,80 @@
+{% extends "template.html" %}
+
+{% block utilities %}
+<script type="text/javascript" src="./static/json2.js"></script>
+<script src="./static/jquery.tablesorter.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./static/jquery.metadata.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="./static/table-themes/blue/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+
+<script type="text/javascript">
+$(document).ready(function() 
+    { 
+        $("#profilereport").tablesorter({sortList: [[4,1]], widgets: ['zebra']}); 
+    } 
+); 
+
+!function( $ ){
+	$(function () {	
+			$('a[rel=tooltip]').tooltip();
+		});
+}( window.jQuery ) 
+
+
+</script>
+
+
+
+{% endblock %}
+
+
+
+		{% block content %}
+
+		<h2>Results:</h2>
+		<p>Results for your query: <strong>{{ query }}</strong>. These results are averages for the last <strong>20 actions</strong> by each Google Plus account. Click column names to sort.</p>
+		
+		<p><a href="/buildExcel">[ Download CSV ]</a></p>
+		
+		
+		<table id = "profilereport" class="tablesorter">
+			<thead>
+				<tr>
+					<th><a href="#" rel='tooltip' data-original-title='Unique ID for this profile'>ID</a></th>
+					<th><a href="#" rel='tooltip' data-original-title='Profile type'>Kind</a></th>
+					<th><a href="#" rel='tooltip' data-original-title='Avatar, if any'>Image?</a></th>
+					<th><a href="#" rel='tooltip' data-original-title='Profile display name (links to G+ profile page)'>Display name</a></th>
+					<th><a href="#" rel='tooltip' data-original-title='Total plus ones received over last 20 actions'>Plus ones</a></th>
+					<th><a href="#" rel='tooltip' data-original-title='Total replies ones received over last 20 actions'>Replies</a></th>
+					<th><a href="#" rel='tooltip' data-original-title='Total reshares received over last 20 actions'>Reshares</a></th>
+					<th><a href="#" rel='tooltip' data-original-title='Total checkins over last 20 actions'>Checkins</a></th>
+					<th><a href="#" rel='tooltip' data-original-title='Total of posts over last 20 actions'>Posts</a></th>
+					<th><a href="#" rel='tooltip' data-original-title='Total shares over last 20 actions'>Shares</a></th>
+					<th><a href="#" rel='tooltip' data-original-title='Date of last profile action'>Last Updated</a></th>
+				</tr>
+				</thead>
+			</thead>
+			<tbody>
+			
+			{% for item in data %}
+			<tr>
+				<td id = "{{ item.0 }}" >{{ item.0 }}</td>
+				<td>{{ item.1 }}</td>
+				<td><img src="{{ item.2 }}" /></td>
+				<td><a href="{{ item.4 }}">{{ item.3 }}</a></td>
+				<td>{{ item.5 }}</td>
+				<td>{{ item.6 }}</td>
+				<td>{{ item.7 }}</td>
+				<td>{{ item.8 }}</td>
+				<td>{{ item.9 }}</td>
+				<td>{{ item.10 }}</td>
+				<td>{{ item.11 }}</td>
+			</tr>
+				
+		
+			{% endfor %}
+			</tbody>
+		</table>
+		<br /><br />
+		<a href="/buildExcel">[ Download CSV ]</a>
+		{% endblock %}
+ 

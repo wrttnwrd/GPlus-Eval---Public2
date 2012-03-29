@@ -1,0 +1,47 @@
+<html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js" />
+
+<script type="text/javascript">
+	alert('hey');
+</script>
+<script type="text/javascript">
+
+
+	$(document).ready(function() {
+		$("#foocontainer").load('/getprofiles?query={{query}}');
+});
+
+	$(document).ready(function() {
+		var i = 20
+		$("#responsecontainer").load('/refresh?randval=' + Math.random());
+			var refreshId = setInterval(function() {
+				while (i > 0)
+				{
+				
+				$("#responsecontainer").load('/refresh?randval=' + Math.random());
+				i = i - 1;
+				
+			}
+			}, 1000);
+		$.ajaxSetup({ cache: false });
+});
+</script>
+
+
+    </head>
+
+    <body>
+    <center>
+    <h1>Running report</h1>
+    <table>
+        <tr>
+            <td align="right"><input id="tquery" type="text" value="seo" /><br />
+            <input type="button" value="Add" onclick="doAdd()" style="width:100%" /><br>
+        </tr>
+    </table>
+    </center>
+	<div id = "responsecontainer" style="border:1px solid silver;height:50px;"></div>
+	<div id ="foocontainer"></div>
+    </body>
+    </html>

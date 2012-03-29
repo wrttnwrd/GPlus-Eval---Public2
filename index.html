@@ -1,0 +1,32 @@
+{% extends "template.html" %}
+
+		{% block content %}
+		
+		<h2>The Google Plus Profile Miner:</h2>
+		<p>Enter a search term or list of profile IDs and get an at-a-glance report showing the most relevant G+ profiles for that term. You can review the results to find the best folks to circle.<br /><br /></p>
+		
+		<h3>Search based on a query term</h3>
+		<p>Enter a word or phrase, and get a list of profiles that Google Plus considers most relevant:</p>
+		
+		<form action="/getprofiles" method="post" />
+			<fieldset style="padding-left:50px;">
+				<label for="Search term">Search term:
+				<input type="text" name="query" style="display:inline;" /> <input type="submit" value="Go!" style="display:inline;">
+			</fieldset>
+		</form>
+		
+		<h3>Search on a list of profile IDs</h3>
+		<p>Requires the numeric profile ID from each Google Plus profile URL. Enter IDs in a comma-separated list:</p>
+		<form action="/getsingleprofile" method="post" />
+			<fieldset style="padding-left:50px;">
+				<label for="Search term">List of profiles:
+				<input type="text" name="profiles" style="display:inline;width:350px;"  /> <input type="submit" value="Go!" style="display:inline;">
+			</fieldset>
+		</form>
+		
+		
+		
+		<p>Note: Report may take up to 3 minutes to generate. Patience, please!</p>
+
+		{% endblock %}
+ 

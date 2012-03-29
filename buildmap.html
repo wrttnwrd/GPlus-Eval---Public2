@@ -1,0 +1,38 @@
+{% extends "template.html" %}
+<h2>The result:</h2>
+
+
+		{% block content %}
+		<a href="/buildExcel">[ Download CSV ]</a>
+		
+		<table width="100%">
+			<tr>
+				<td>keyword</td>
+				<td>goal completions</td>
+				<td>conversion rate</td>
+				<td>visits</td>
+				<td>page</td>
+				<td>position</td>
+				<td>cpc</td>
+				<td>volume</td>
+				<td>comp</td>
+				<td>results</td>
+			</tr>
+		{% for k in kwlist %}
+		<tr>
+			<td>{{ k.0 }}</td>
+			<td>{{ k.1 }}</td>
+			<td>{{ k.2 }}</td>
+			<td>{{ k.3 }}</td>
+			<td>{{ k.4 }}</td>
+			<td>{{ k.5 }}</td>
+			<td>{{ k.6 }}</td>
+			<td>{{ k.7 }}</td>
+			<td>{{ k.8 }}</td>
+			<td>{{ k.9 }}</td>
+		</tr>
+		{% endfor %}
+		</table>
+		<a href="/buildExcel">[ Download CSV ]</a>
+		
+		{% endblock %}
